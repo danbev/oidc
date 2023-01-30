@@ -82,6 +82,12 @@ $ curl -s -L https://token.actions.githubusercontent.com/.well-known/jwks | jq '
   "x5t": "eBZ_cn3sXYAd0ch4THBKHIgOwOE"
 }
 ```
+We can store the keys using the following command:
+```console
+$ curl -s -L https://token.actions.githubusercontent.com/.well-known/jwks | jq -c '.' > jwks
+```
+This will be used by [id_token.rs](src/id_token.rs).
+
 And we can inspect the certificate using:
 ```console
 $ curl -s -L https://token.actions.githubusercontent.com/.well-known/jwks | jq '.keys[] | select(.kid=="78167F727DEC5D801DD1C8784C704A1C880EC0E1")' | jq -r '.x5c[0]' | base64 -d | openssl x509 -inform der -text
@@ -172,3 +178,4 @@ SAls+NhexbW/oOokBNCVqe+T2xXizktbFnFAFaomvwjVSvIeu3i/0Ygywl+3s5iz
 MEsZ1T1ydIytv4FZf2JCHgRpmGPWJ5A7TpxuHSiE8Do=
 -----END CERTIFICATE-----
 ```
+
