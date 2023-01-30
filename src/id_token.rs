@@ -29,7 +29,8 @@ fn main() {
                     &validation,
                 )
                 .unwrap();
-                println!("{:?}", decoded_token);
+                println!("claims: {:?}", decoded_token.claims);
+                println!("sub: {:?}", decoded_token.claims.get("sub").unwrap());
             }
             _ => unreachable!("this should be a RSA"),
         }
