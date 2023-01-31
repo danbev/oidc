@@ -31,6 +31,10 @@ fn main() {
                 .unwrap();
                 println!("claims: {:?}", decoded_token.claims);
                 println!("sub: {:?}", decoded_token.claims.get("sub").unwrap());
+                println!(
+                    "job_workflow_ref: {:?}",
+                    decoded_token.claims.get("job_workflow_ref").unwrap()
+                );
             }
             _ => unreachable!("this should be a RSA"),
         }
